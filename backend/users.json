@@ -1,0 +1,32 @@
+{
+  "nitesh": {
+    "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "profile": {
+      "username": "nitesh",
+      "email": "niteshsain3022@gmail.com",
+      "state": "haryana",
+      "income": 100000,
+      "category": "Education",
+      "caste_category": "OBC",
+      "age": 21,
+      "gender": "Male",
+      "occupation": "student"
+    },
+    "token": "9da7b7742b864b0e07b49e9d74de7742"
+  },
+  "nitu": {
+    "password": "803a9c55da58b57b549df67cf67e6eaac32ce206469637451b71ce06292720f9",
+    "profile": {
+      "username": "nitu",
+      "email": "niteshsain3022@gmail.com",
+      "state": "haryana",
+      "income": 2000000,
+      "category": "Health",
+      "caste_category": "General",
+      "age": 56,
+      "gender": "Female",
+      "occupation": ""
+    },
+    "token": "a50e9b71356c42ae1df4ff21b708fcae"
+  }
+}

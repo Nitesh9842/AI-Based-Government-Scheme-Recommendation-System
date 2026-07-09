@@ -1,0 +1,116 @@
+{
+  "name": "Civora Nexus - Government Scheme Recommender",
+  "short_name": "Civora Nexus",
+  "description": "AI-powered platform to discover personalized government schemes with smart recommendations for 3500+ schemes across India",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F7FA",
+  "theme_color": "#16808D",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["government", "finance", "education", "productivity", "utilities"],
+  "screenshots": [
+    {
+      "src": "assets/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Civora Nexus Desktop View"
+    },
+    {
+      "src": "assets/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Civora Nexus Mobile View"
+    }
+  ],
+  "icons": [
+    {
+      "src": "assets/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Find Schemes",
+      "short_name": "Find",
+      "description": "Get personalized scheme recommendations",
+      "url": "/#recommend",
+      "icons": [
+        {
+          "src": "assets/favicon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Check Alerts",
+      "short_name": "Alerts",
+      "description": "View scheme alerts and updates",
+      "url": "/#alerts",
+      "icons": [
+        {
+          "src": "assets/favicon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Compare Schemes",
+      "short_name": "Compare",
+      "description": "Compare multiple schemes",
+      "url": "/#compare",
+      "icons": [
+        {
+          "src": "assets/favicon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Search Schemes",
+      "short_name": "Search",
+      "description": "Search through all available schemes",
+      "url": "/#search",
+      "icons": [
+        {
+          "src": "assets/favicon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+civoranexus",
+      "url": "/?scheme=%s"
+    }
+  ]
+}
