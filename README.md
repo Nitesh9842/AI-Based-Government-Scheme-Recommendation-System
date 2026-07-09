@@ -1,184 +1,155 @@
-# 🚀 CivoraX Internship Program 2025-26
+ # SchemeAssist AI
 
-<p align="center">
-  <img src="https://internship.civoranexus.com/CivoraX.png" alt="CivoraX Logo" width="200"/>
-</p>
+ Government scheme recommendation engine that helps citizens find and compare government benefit schemes they are eligible for.
 
-<p align="center">
-  <strong>Launch your tech career with real projects, expert mentorship, and industry-recognized certification</strong>
-</p>
+ ## Table of contents
+ - [Project overview](#project-overview)
+ - [Features](#features)
+ - [Architecture & key files](#architecture--key-files)
+ - [Quickstart](#quickstart)
+ - [API reference](#api-reference)
+ - [Data format](#data-format)
+ - [Development & tests](#development--tests)
+ - [Contributing](#contributing)
+ - [License](#license)
+ - [Contact](#contact)
 
+ ## Project overview
 
+ SchemeAssist AI (Project ID: AID105) is a lightweight Flask-based backend paired with a static frontend to recommend government schemes to users using eligibility rules and a scoring engine.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Duration-5%20Weeks-blue" alt="Duration"/>
-  <img src="https://img.shields.io/badge/Start%20Date-Jan%205%2C%202026-green" alt="Start Date"/>
-  <img src="https://img.shields.io/badge/End%20Date-Feb%208%2C%202026-orange" alt="End Date"/>
-  <img src="https://img.shields.io/badge/Mode-Remote--First-purple" alt="Mode"/>
-</p>
+ The repository layout (top-level) is:
 
----
+ ```
+ aid105-Nitesh9842/
+ ├── backend/          # Flask API, storage helpers and recommender logic
+ ├── data/             # CSV dataset: combined_schemes.csv
+ ├── frontend/         # Static UI (HTML/JS/CSS)
+ ├── reports/          # Report generation scripts
+ ├── tests/            # Unit tests
+ └── SETUP_GUIDE.md    # Additional setup notes
+ ```
 
-## 📊 Program Statistics
+ ## Features
 
-| Metric | Value |
-|--------|-------|
-| 🎓 Interns Trained | 300+ |
-| 💼 Live Projects | 20 |
-| ⏱️ Program Duration | 5 Weeks |
+ - Personalized scheme recommendations with eligibility scoring
+ - Scheme search and filtering
+ - Compare up to 4 schemes with side-by-side insights
+ - Track favorites and application status (stored in JSON files)
+ - Export recommendation results (JSON / CSV)
+ - Simple user registration/login and profile storage (file-based tokens)
 
----
+ ## Architecture & key files
 
+ - Backend Flask app: [backend/app.py](backend/app.py)
+ - Recommendation engine and scoring: [backend/recommender.py](backend/recommender.py)
+ - Schemes dataset: [data/combined_schemes.csv](data/combined_schemes.csv)
+ - Frontend entry: [frontend/index.html](frontend/index.html)
+ - Tests: [tests/test_recommender.py](tests/test_recommender.py)
+ - Setup guide: [SETUP_GUIDE.md](SETUP_GUIDE.md)
 
-## 📅 Program Details
+ ## Quickstart
 
-| Detail | Information |
-|--------|-------------|
-| **Duration** | 5-week intensive program |
-| **Dates** | January 5 - February 8, 2026 |
-| **Format** | Remote-first with live sessions and workshops |
-| **Structure** | Real-time project work with weekly milestones |
+ Prerequisites: Python 3.8+ and pip.
 
----
+ 1) Create and activate a virtual environment (recommended):
 
-## ✅ Eligibility Criteria
+ ```bash
+ python -m venv .venv
+ # Windows
+ .venv\Scripts\activate
+ # macOS / Linux
+ source .venv/bin/activate
+ ```
 
-- ✔️ Students from **any year or degree program**
-- ✔️ Recent graduates and **career switchers** welcome
-- ✔️ **Basic programming knowledge** required
-- ✔️ Strong **passion for technology** and learning
+ 2) Install dependencies:
 
----
+ ```bash
+ pip install -r backend/requirements.txt
+ ```
 
-## 🛠️ Technologies You'll Master
+ 3) Run the backend:
 
-| Category | Technologies |
-|----------|-------------|
-| **Frontend** | React, Next.js |
-| **Backend** | Node.js, Python |
-| **Advanced** | AI & Machine Learning |
-| **Infrastructure** | Cloud & DevOps |
-| **Mobile** | Cross-platform Development |
-| **Database** | SQL & NoSQL Systems |
-| **APIs** | RESTful & GraphQL |
-| **Workflow** | Agile & Git |
+ ```bash
+ python backend/app.py
+ ```
 
----
+ The API server will start on http://localhost:5000 by default. The static frontend files are served by Flask; open http://localhost:5000 in a browser to use the UI.
 
-## 📋 Application Process
+ If you prefer to open the frontend statically, open [frontend/index.html](frontend/index.html) in your browser (some features require the API server).
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   01. Register  │───▶│  02. Team       │───▶│  03. Receive    │
-│   Online        │    │  Review         │    │  Confirmation   │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
+ ## API reference
 
-1. **📝 Register Online** - Complete your application form with details and preferences
-2. **🔍 CivoraX Team Review** - Our team reviews your application and qualifications
-3. **✉️ Eligibility Email** - Receive confirmation email if selected
+ The backend exposes a REST API. Main endpoints (all under `/api`):
 
+ - `GET /api/health` — health check
+ - `POST /api/register` — register a new user
+ - `POST /api/login` — login and receive a token
+ - `GET|POST /api/profile` — read/update profile (requires `Authorization` header with token)
+ - `POST /api/recommend` — request scheme recommendations (pass user profile fields)
+ - `POST /api/search` — search schemes with filters
+ - `POST /api/compare` — compare multiple schemes (max 4)
+ - `GET /api/statistics` — aggregated scheme statistics
+ - `GET|POST|DELETE /api/favorites` — manage favorites (query param `user_id` optional)
+ - `GET|POST|PUT /api/applications` — track application status per user
+ - `POST /api/export` — export selected schemes (json or csv)
+ - `POST /api/feedback` — submit user feedback
 
+ Example: request recommendations with curl:
 
+ ```bash
+ curl -X POST http://localhost:5000/api/recommend \
+   -H "Content-Type: application/json" \
+   -d '{"state":"Karnataka","income":150000,"category":"Education","age":28}'
+ ```
 
-## 📞 Contact Information
+ Authentication: The simple file-based auth issues a token on login; include it in `Authorization` header for protected endpoints, e.g. `Authorization: <token>`.
 
-| Channel | Details |
-|---------|---------|
-| 📧 **Email** | [contact@civoranexus.com](mailto:contact@civoranexus.com) |
-| 📱 **Phone** | [+91 7350675192](tel:+917350675192) |
-| 📍 **Location** | 422605, Sangamner, Maharashtra, India |
+ ## Data format
 
-### 🔗 Social Links
+ Schemes are stored in [data/combined_schemes.csv](data/combined_schemes.csv). Key columns expected by the recommender include (but are not limited to):
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-CivoraX-blue?style=flat&logo=linkedin)](https://www.linkedin.com/company/civoranexus)
-[![Instagram](https://img.shields.io/badge/Instagram-CivoraX-E4405F?style=flat&logo=instagram)](https://www.instagram.com/civoranexus)
-[![Twitter](https://img.shields.io/badge/Twitter-CivoraX-1DA1F2?style=flat&logo=twitter)](https://twitter.com/civoranexus)
-[![YouTube](https://img.shields.io/badge/YouTube-CivoraX-FF0000?style=flat&logo=youtube)](https://www.youtube.com/@civoranexus)
+ - `scheme_id`, `scheme_name`, `state`, `category`, `min_income`, `max_income`, `min_age`, `max_age`, `target_group`, `benefits`, `is_active`, `last_updated`, `level`
 
----
+ The recommender filters inactive schemes (`is_active != "Yes"`) and computes an eligibility `score` (0–100) based on income, age, category, caste targets and state.
 
-## 🏢 About Civora Nexus
+ ## Development & tests
 
-**Civora Nexus Pvt. Ltd.** is a technology company empowering communities through innovative civic and healthcare technology solutions.
+ - Run tests (pytest):
 
-### Company Services:
-- 🔄 Digital Transformation for Businesses
-- 🏘️ Smart Community & Enterprise Solutions
-- 💡 Affordable Tech Solutions
-- 📊 Data Analytics & Business Insights
-- 🎓 Innovation & Skill Development
-- 🤖 AI & Automation Solutions
+ ```bash
+ pip install pytest
+ pytest -q
+ ```
 
----
+ - Linting / formatting: use your preferred tools (flake8/black) as desired.
 
-## 📚 Quick Links
+ - The recommender logic lives in [backend/recommender.py](backend/recommender.py). Unit tests that validate core scoring are in [tests/test_recommender.py](tests/test_recommender.py).
 
-- 🌐 [Official Website](https://civoranexus.com/)
-- 📋 [Internship Portal](https://civoranexus.com/internships)
-- 🔐 [Certificate Verification](https://internship.civoranexus.com)
-- 📄 [Privacy Policy](https://civoranexus.com/privacy-policy)
-- 📜 [Terms of Service](https://civoranexus.com/terms-and-conditions)
+ ## Contributing
 
+ Contributions are welcome. Typical workflow:
 
+ 1. Fork the repository and create a feature branch.
+ 2. Run tests and add/update tests for new behavior.
+ 3. Open a pull request describing the change.
 
-<p align="center">
-  <strong>© 2025 Civora Nexus Pvt. Ltd. All rights reserved.</strong>
-</p>
+ Before changing public APIs, please open an issue to discuss the design.
 
-<p align="center">
-  Made with ❤️ by CivoraX Team
-</p>
+ ## Security & caveats
 
-# 🏛️ SchemeAssist AI
+ - This project stores user data and tokens in JSON files for simplicity. For production use, migrate to a proper database and secure authentication (hashed tokens, TLS, session management).
+ - Validate and sanitize any user-provided data before trusting it in production.
 
-**Government Scheme Recommendation System**
+ ## License
 
-Project ID: AID105 | Civora Nexus Pvt. Ltd. | CivoraX Internship
+ This repository includes a top-level `LICENSE` file. See it for licensing terms.
 
-## 📋 Overview
-SchemeAssist AI helps citizens discover government schemes they are eligible for using an intelligent recommendation engine.
+ ## Contact
 
-## 🚀 Quick Start
+ Project author: Nitesh
 
-```bash
-# Install dependencies
-pip install -r requirements.txt
+ If you need help running the project, check [SETUP_GUIDE.md](SETUP_GUIDE.md) or open an issue.
 
-# Run backend server
-cd backend
-python app.py
-
-# Open frontend
-# Open frontend/index.html in browser
-```
-
-## 📁 Project Structure
-```
-aid105-Nitesh9842/
-├── backend/          # Flask API & AI logic
-├── data/             # Schemes database
-├── frontend/         # Web interface
-├── reports/          # Report generator
-├── docs/             # Documentation
-└── tests/            # Unit tests
-```
-
-## ✨ Features
-- ✅ AI-powered scheme matching
-- ✅ Eligibility scoring
-- ✅ Deadline alerts
-- ✅ Report generation
-
-## 🛠️ Tech Stack
-- Python, Flask
-- HTML, CSS, JavaScript
-- Pandas
-
-## 👤 Author
-**Nitesh** - CivoraX Intern
-
----
-*Civora Nexus Pvt. Ltd. © 2025*
-
-
+ ---
+ Generated README — updated to include setup, API, and development notes.
